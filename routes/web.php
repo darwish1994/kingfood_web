@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('/',HomeController::class);
+
+
+Route::get('/contact_us',[ContactUsController::class,'index']);
+Route::post('/contact_us',[ContactUsController::class,'store']);
+
 
 
 Route::group(['prefix' => 'admin'], function () {
