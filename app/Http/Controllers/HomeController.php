@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactDetail;
 use App\Models\HeaderMenu;
 use App\Models\Offer;
 use App\Models\Section;
@@ -96,6 +97,13 @@ class HomeController extends Controller
 
          $header = HeaderMenu::all();
          return $header;
+
+     }
+
+
+     public static function getContact(){
+
+        return ContactDetail::all();
 
      }
 
