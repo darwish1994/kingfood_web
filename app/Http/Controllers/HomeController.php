@@ -6,7 +6,9 @@ use App\Models\ContactDetail;
 use App\Models\HeaderMenu;
 use App\Models\Offer;
 use App\Models\Section;
+use function Composer\Autoload\includeFile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -19,10 +21,9 @@ class HomeController extends Controller
     {
         $sections = Section::all();
 
-        $offers=Offer::all()->take(3);
+        $offers = Offer::all()->take(3);
 
-        return View('index',compact('sections','offers'));
-
+        return View('index', compact('sections', 'offers'));
 
 
     }
@@ -40,7 +41,7 @@ class HomeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -51,7 +52,7 @@ class HomeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -62,7 +63,7 @@ class HomeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -73,8 +74,8 @@ class HomeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -85,7 +86,7 @@ class HomeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -93,18 +94,26 @@ class HomeController extends Controller
         //
     }
 
-     public static function getHeaderMenu(){
-
-         $header = HeaderMenu::all();
-         return $header;
-
-     }
+    public static function getHeaderMenu()
+    {
 
 
-     public static function getContact(){
+        if (Auth::check())
+            $header = HeaderMenu::all();
+
+        else
+            $header = HeaderMenu::where('required_auth', 0)->get();
+
+        return $header;
+
+    }
+
+
+    public static function getContact()
+    {
 
         return ContactDetail::all();
 
-     }
+    }
 
 }

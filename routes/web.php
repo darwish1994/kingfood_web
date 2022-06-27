@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
@@ -16,6 +17,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('logout',[AuthController::class,"logout"]);
+
+Route::post('login',[AuthController::class,"login"]);
+Route::get('login',[AuthController::class,"loginIndex"]);
+
+Route::post('register',[AuthController::class,"register"]);
+Route::get('register',[AuthController::class,"registerIndex"]);
+
 
 Route::resource('/',HomeController::class);
 Route::resource('/menu', MenuController::class);

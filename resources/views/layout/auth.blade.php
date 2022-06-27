@@ -14,8 +14,8 @@
 
     <!-- Google Fonts -->
     <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+            rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="{{asset("vendor/aos/aos.css")}}" rel="stylesheet">
@@ -40,16 +40,6 @@
         <nav id="navbar" class="navbar">
             <ul>
 
-                @if(\Illuminate\Support\Facades\Auth::user() == null)
-                    <li><a class="getstarted scrollto" href="{{url('register')}}">سجل الان</a></li>
-                    <li><a class="getstarted scrollto" href="{{url('login')}}">دخول</a></li>
-
-                @else
-
-                    <li><a class="getstarted scrollto" href="{{url('logout')}}">تسجيل خروج</a></li>
-
-                @endif
-
                 @foreach(\App\Http\Controllers\HomeController::getHeaderMenu() as  $item)
                     <li><a class="nav-link scrollto active" href="{{$item->path}}">{{$item->title}}</a></li>
                 @endforeach
@@ -66,53 +56,6 @@
 <div class="container">
     @yield('content')
 
-
-    <main id="main">
-
-    @yield('main')
-
-
-    <!-- ======= Contact Section ======= -->
-        <section id="contac" class="contact">
-
-            <div class="container" data-aos="fade-up">
-
-                <header class="section-header">
-                    <h2>التواصل</h2>
-
-                </header>
-
-                <div class="row gy-4">
-
-                    <div class="col-lg-12">
-
-                        <div class="row gy-4">
-
-
-                            @foreach(\App\Http\Controllers\HomeController::getContact() as  $item)
-
-                                <div class="col-md-6">
-                                    <div class="info-box">
-                                        <i class="bi {{$item->icon}}"></i>
-                                        <h3>{{$item->title}}</h3>
-                                        {!! $item->details !!}
-                                    </div>
-                                </div>
-
-                            @endforeach
-
-                        </div>
-
-                    </div>
-                </div>
-                </form>
-
-            </div>
-
-
-        </section><!-- End Contact Section -->
-
-    </main>
 </div>
 
 
