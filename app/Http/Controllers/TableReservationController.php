@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Table;
+use App\Models\TableReservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -45,6 +46,33 @@ class TableReservationController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'name'=>"required",
+            'phone'=>"required",
+            'table_id'=>"required",
+            'time'=>"required",
+        ]);
+
+        $reservation= new TableReservation();
+        $reservation->table_id= $request->table_id;
+        $reservation->date= $request->time;
+        $reservation->name= $request->name;
+        $reservation->phone= $request->phone;
+        $reservation->num_persons= $request->num_persons;
+        $reservation->save();
+
+
+        $table=Table::find($request->table_id);
+        $table->reserved=1;
+        $table->update();
+
+
+        return redirect('/')->with('success','table has been reserved');
+
+
+
+
+
     }
 
     /**

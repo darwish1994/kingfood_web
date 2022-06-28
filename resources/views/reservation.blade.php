@@ -52,9 +52,12 @@
                                         <input type="text" class="form-control" name="phone" placeholder="رقم الهاتف"
                                                value="{{\Illuminate\Support\Facades\Auth::user()->phone}}" required>
                                     </div>
+                                    <div class="col-md-12">
+                                        <input type="number" class="form-control" name="phone" placeholder="عدد الافراد"  required>
+                                    </div>
                                     <div class="input-group col-md-12">
 
-                                        <select class="form-select" id="inputGroupSelect01">
+                                        <select class="form-select" name="table_id">
                                             @foreach($tables as $table)
                                                 <option value="{{$table->id}}"> رقم الطاولة ({{$table->postion}})</option>
 
