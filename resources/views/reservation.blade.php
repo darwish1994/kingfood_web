@@ -53,7 +53,7 @@
                                                value="{{\Illuminate\Support\Facades\Auth::user()->phone}}" required>
                                     </div>
                                     <div class="col-md-12">
-                                        <input type="number" class="form-control" name="phone" placeholder="عدد الافراد"  required>
+                                        <input type="number" class="form-control" name="num_persons" placeholder="عدد الافراد"  required>
                                     </div>
                                     <div class="input-group col-md-12">
 
