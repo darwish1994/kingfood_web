@@ -54,6 +54,7 @@ class TableReservationController extends Controller
         ]);
 
         $reservation= new TableReservation();
+        $reservation->user_id= Auth::user()->id;
         $reservation->table_id= $request->table_id;
         $reservation->date= $request->time;
         $reservation->name= $request->name;
