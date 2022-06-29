@@ -21,25 +21,28 @@
             </header>
 
             <div class="row">
-                <div class="row col-lg-12">
-                    <div class="col-lg-5">اسم الصنف</div>
-                    <div class="col-lg-2">الكمية</div>
-                    <div class="col-lg-2">السعر</div>
-                    <div class="col-lg-3">Action</div>
-                </div>
+                <table>
+                    <tr>
+                        <th>اسم الصنف</th>
+                        <th>الكمية</th>
+                        <th>السعر</th>
+                        <th>Action</th>
+                    </tr>
+
+
+                    @foreach($items as $supply)
+                        <tr>
+                            <th>{{$supply->name}}</th>
+                            <th>{{$supply->quantity}}</th>
+                            <th>{{$supply->price}}</th>
+                            <th><a href="{{url('cart/remove/').$supply->id}}">Remove</a></th>
+                        </tr>
+                    @endforeach
+
+                </table>
+
+
             </div>
-            @foreach($items as $supply)
-                <div class="row">
-                    <div class="row col-lg-12">
-                        <div class="col-lg-5">{{$supply->name}}</div>
-                        <div class="col-lg-2">{{$supply->quantity}}</div>
-                        <div class="col-lg-2">{{$supply->price}}</div>
-                        <div class="col-lg-3">
-                            <a href="{{url('cart/remove/').$supply->id}}">Remove</a>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
 
 
         </div>
