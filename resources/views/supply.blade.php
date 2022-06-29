@@ -24,8 +24,6 @@
             </header>
 
             <div class="row">
-
-
                 <div class="row col-lg-12">
                     <div class="col-lg-2">اسم الصنف</div>
                     <div class="col-lg-1">الكمية</div>
@@ -34,8 +32,9 @@
                     <div class="col-lg-3">التفاصيل</div>
                     <div class="col-lg-3">Action</div>
                 </div>
-                @foreach($supplies as $supply)
-
+            </div>
+            @foreach($supplies as $supply)
+                <div class="row">
                     <div class="row col-lg-12">
                         <div class="col-lg-2">{{$supply->name}}</div>
                         <div class="col-lg-1">{{$supply->quantity}}</div>
@@ -43,13 +42,12 @@
                         <div class="col-lg-2">{{$supply->date}}</div>
                         <div class="col-lg-3">{{$supply->details}}</div>
                         <div class="col-lg-2">
-                        <a href="{{url('supplier/delete/').$supply->id}}">Delete</a>
+                            <a href="{{url('supplier/delete/').$supply->id}}">Delete</a>
                         </div>
                     </div>
-                @endforeach
+                </div>
+            @endforeach
 
-
-            </div>
 
         </div>
 
