@@ -51,8 +51,7 @@ Route::get('cart/remove/{id}',[CartController::class,'removeFromCart']);
 
 
 Route::get('order/create',[OrderController::class,'createNewOrder']);
-
-
+Route::get('order',[OrderController::class,'index']);
 
 
 

@@ -17,7 +17,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders=Order::where('user_id', Auth::user()->id)->join('order_item','order.id','order_item.order_id')->join('product', 'order_item.product_id', 'product.id')->select('order.*', 'order_item.quantity','product.name')->get();
+
+        return view('order',compact('orders'));
+
     }
 
     /**
