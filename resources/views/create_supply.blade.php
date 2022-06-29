@@ -1,4 +1,3 @@
-<?php
 @extends('layout.app')
 
 @section('content')
