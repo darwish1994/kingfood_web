@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
@@ -38,6 +39,16 @@ Route::resource('supplier', SupplierController::class);
 
 Route::get('/contact_us',[ContactUsController::class,'index']);
 Route::post('/contact_us',[ContactUsController::class,'store']);
+
+// add to cart
+
+Route::get('cart',[CartController::class,'index']);
+
+Route::get('cart/add/{id}',[CartController::class,'addToCart']);
+
+Route::get('cart/remove/{id}',[CartController::class,'removeFromCart']);
+
+
 
 
 
