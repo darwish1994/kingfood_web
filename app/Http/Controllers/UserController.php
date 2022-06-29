@@ -43,17 +43,35 @@ class UserController extends Controller
     public function register(Request $request)
     {
 
-
         $validated = $request->validate([
             "name" => "required",
             "email" => "required|unique:users",
-            "phone" => "required",
+            "phone" => "required|unique:users",
             "address" => "required",
             "password" => "required",
 
         ]);
 
+        if (!empty($validated)) {
 
+            $data["error"] = $validated;
+            return response()->json($data, 401);
+        }
+
+
+        $user = new User();
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->password = Hash::make($request->password);
+        $user->role_id = 2;
+        $user->save();
+
+        $data["data"] = $user;
+        $data["message"] = "user is registered";
+        return response()->json($data, 200);
 
 
     }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\OffersController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,5 +27,13 @@ Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
 
 Route::post('forget_password', [UserController::class, 'resetPassword']);
+
+
+Route::get('product',[ProductController::class,'getAllProducts']);
+
+Route::get('offers',[OffersController::class,'getAllOffers']);
+
+
+
 
 
