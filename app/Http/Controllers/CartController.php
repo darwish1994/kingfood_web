@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CartItem;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -94,6 +95,22 @@ class CartController extends Controller
 
     }
     public function addToCart($id){
+        $item = CartItem::where('user_id', Auth::user()->id)->where('product_id',$id)->first();
+
+        if ($item == null){
+            $newItem= new CartItem();
+            $newItem->user_id=Auth::user()->id;
+            $newItem->product_id=$id;
+            $newItem->quantity=1;
+            $newItem->price=Product::find($id)->price;
+            $newItem->save();
+
+        }else{
+            $item->quantity++;
+            $item->update();
+        }
+
+        return redirect()->back();
 
     }
 }

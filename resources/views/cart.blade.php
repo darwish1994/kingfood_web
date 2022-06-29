@@ -8,7 +8,6 @@
                 <li><a href="index.html"> الرئيسية<a></li>
 
             </ol>
-            <h2> hguvfm</h2>
 
         </div>
     </section><!-- End Breadcrumbs -->
@@ -18,9 +17,7 @@
         <div class="container" data-aos="fade-up">
 
             <header class="section-header">
-                <h2> التواصل </h2>
-                <p>
-                    العربه</p>
+                <h2> العربه </h2>
             </header>
 
             <div class="row">

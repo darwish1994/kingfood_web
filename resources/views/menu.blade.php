@@ -37,8 +37,7 @@
                                 <h4>{{$item->price}} L.E</h4>
                                 <p>{{$item->name}}</p>
                                 <div class="portfolio-links">
-                                    <a href="{{Storage::url($item->image)}}" data-gallery="portfolioGallery"
-                                       class="portfokio-lightbox" title="مشروم"><i class="bi bi-plus"></i></a>
+                                    <a href="{{url('cart/add/').$item->id}}" data-gallery="portfolioGallery" class="portfokio-lightbox" title="مشروم"><i class="bi bi-plus"></i></a>
                                     <a href="./inner-page 4.html" title="More Details"><i class="bi bi-link"></i></a>
                                 </div>
                             </div>
