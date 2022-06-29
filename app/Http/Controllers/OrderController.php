@@ -115,9 +115,10 @@ class OrderController extends Controller
                 $orderItem->quantity=$item->quantity;
                 $orderItem->save();
 
+                CartItem::find($item->id)->delete();
+
             }
 
-            $items->delete();
 
         }
 
