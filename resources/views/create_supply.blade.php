@@ -32,6 +32,8 @@
 
                 <div class="col-lg-6">
                     <form action="{{url('supplier')}}" method="post" >
+
+                        @csrf
                         <div class="row gy-4">
 
                             <div class="col-md-6">
@@ -57,9 +59,6 @@
 
 
                             <div class="col-md-12 text-center">
-                                <div class="loading">تحميل</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Your message has been sent. Thank you!</div>
 
                                 <button type="submit">التوريد</button>
                             </div>
