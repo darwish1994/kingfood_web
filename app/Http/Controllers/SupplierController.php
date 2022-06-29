@@ -17,7 +17,7 @@ class SupplierController extends Controller
     {
 
         $supplies = Supply::where('user_id', Auth::user()->id)->get();
-        return view('supplier', compact('supplies'));
+        return view('supply', compact('supplies'));
 
     }
 
@@ -64,7 +64,7 @@ class SupplierController extends Controller
         $supply->save();
 
 
-        return redirect('supplier')->with('success','added supply success');
+        return redirect('supply')->with('success','added supply success');
 
 
     }
@@ -111,6 +111,10 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        Supply::find($id)->delete();
+
+        return redirect()->back();
+
     }
 }
