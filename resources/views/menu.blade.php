@@ -37,7 +37,7 @@
                                 <h4>{{$item->price}} L.E</h4>
                                 <p>{{$item->name}}</p>
                                 <div class="portfolio-links">
-                                    <a href="{{url('cart/add/').$item->id}}" ><i class="bi bi-plus"></i></a>
+                                    <a href="{{url('cart/add/'.$item->id)}}" ><i class="bi bi-plus"></i></a>
                                 </div>
                             </div>
                         </div>
