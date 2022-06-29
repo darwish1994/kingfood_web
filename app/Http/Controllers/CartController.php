@@ -20,7 +20,7 @@ class CartController extends Controller
             return redirect('/');
         }
 
-        $items = CartItem::where('user_id', Auth::user()->id)->get();
+        $items = CartItem::where('user_id', Auth::user()->id)->join('product','cart_item.product_id','product.id')->select('cart_item.*','product.name')->get();
         return view('cart', compact('items'));
 
     }
