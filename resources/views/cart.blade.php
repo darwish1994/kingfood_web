@@ -32,7 +32,7 @@
 
                     @foreach($items as $supply)
                         <tr>
-                            <th>{{$supply->name}}</th>
+                            <th>{{$supply->title}}</th>
                             <th>{{$supply->quantity}}</th>
                             <th>{{$supply->price}}</th>
                             <th><a href="{{url('cart/remove/').$supply->id}}">Remove</a></th>
