@@ -26,7 +26,7 @@
             <div class="row">
 
 
-                <div class="col-lg-12">
+                <div class="row col-lg-12">
                     <div class="col-lg-3">اسم الصنف</div>
                     <div class="col-lg-1">الكمية</div>
                     <div class="col-lg-2">السعر</div>
@@ -35,7 +35,7 @@
                 </div>
                 @foreach($supplies as $supply)
 
-                    <div class="col-lg-12">
+                    <div class="row col-lg-12">
                         <div class="col-lg-3">{{$supply->name}}</div>
                         <div class="col-lg-1">{{$supply->quantity}}</div>
                         <div class="col-lg-2">{{$supply->price}}</div>

@@ -64,7 +64,7 @@ class SupplierController extends Controller
         $supply->save();
 
 
-        return redirect('supply')->with('success','added supply success');
+        return redirect('supplier')->with('success','added supply success');
 
 
     }
