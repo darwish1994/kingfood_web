@@ -44,6 +44,10 @@
 
             </div>
 
+            <div class="row">
+                <a href="{{url('order/create')}}">Create Order</a>
+            </div>
+
 
         </div>
 

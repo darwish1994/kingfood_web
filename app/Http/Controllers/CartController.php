@@ -20,7 +20,7 @@ class CartController extends Controller
             return redirect('/');
         }
 
-        $items = CartItem::where('user_id', Auth::user()->id)->join('product','cart_item.product_id','product.id')->select('cart_item.*','product.name')->get();
+        $items = CartItem::where('user_id', Auth::user()->id)->join('product', 'cart_item.product_id', 'product.id')->select('cart_item.*', 'product.name')->get();
         return view('cart', compact('items'));
 
     }
@@ -91,21 +91,35 @@ class CartController extends Controller
         //
     }
 
-    public function removeFromCart($id){
+    public function removeFromCart($id)
+    {
+
+        $item = CartItem::where('user_id', Auth::user()->id)->where('product_id', $id)->first();
+
+        if ($item->quantity == 1)
+            $item->delete();
+        else {
+            $item->quantity--;
+            $item->update();
+        }
+
+        return redirect()->back();
 
     }
-    public function addToCart($id){
-        $item = CartItem::where('user_id', Auth::user()->id)->where('product_id',$id)->first();
 
-        if ($item == null){
-            $newItem= new CartItem();
-            $newItem->user_id=Auth::user()->id;
-            $newItem->product_id=$id;
-            $newItem->quantity=1;
-            $newItem->price=Product::find($id)->price;
+    public function addToCart($id)
+    {
+        $item = CartItem::where('user_id', Auth::user()->id)->where('product_id', $id)->first();
+
+        if ($item == null) {
+            $newItem = new CartItem();
+            $newItem->user_id = Auth::user()->id;
+            $newItem->product_id = $id;
+            $newItem->quantity = 1;
+            $newItem->price = Product::find($id)->price;
             $newItem->save();
 
-        }else{
+        } else {
             $item->quantity++;
             $item->update();
         }
