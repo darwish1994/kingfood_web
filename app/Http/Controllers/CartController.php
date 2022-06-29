@@ -94,7 +94,7 @@ class CartController extends Controller
     public function removeFromCart($id)
     {
 
-        $item = CartItem::where('user_id', Auth::user()->id)->where('product_id', $id)->first();
+        $item = CartItem::find($id);
 
         if ($item->quantity == 1)
             $item->delete();
