@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ContactDetail;
-use App\Models\HeaderMenu;
-use App\Models\Offer;
-use App\Models\Section;
-use function Composer\Autoload\includeFile;
+use App\Models\Supply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,12 +15,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $sections = Section::all();
 
-        $offers = Offer::all()->take(3);
-
-        return View('index', compact('sections', 'offers'));
-
+        $supplies = Supply::where('user_id', Auth::user()->id)->get();
+        return view('supplier', compact('supplies'));
 
     }
 
@@ -36,6 +29,8 @@ class HomeController extends Controller
     public function create()
     {
         //
+        return view('create_supply');
+
     }
 
     /**
@@ -47,6 +42,31 @@ class HomeController extends Controller
     public function store(Request $request)
     {
         //
+
+        $this->validate($request,[
+            'name'=> 'required',
+            'quantity'=> 'required',
+            'price'=> 'required',
+            'date'=> 'required',
+        ]);
+
+
+        $supply=new Supply();
+
+        $supply->user_id=Auth::user()->id;
+
+        $supply->name=$request->name;
+        $supply->quantity=$request->quantity;
+        $supply->price=$request->price;
+        $supply->date=$request->date;
+        $supply->details=$request->details;
+
+        $supply->save();
+
+
+        return redirect('supplier')->with('success','added supply success');
+
+
     }
 
     /**
@@ -93,40 +113,4 @@ class HomeController extends Controller
     {
         //
     }
-
-    public static function getHeaderMenu()
-    {
-
-
-        if (Auth::check())
-            switch (Auth::user()->role_id){
-
-                case 1:
-                    $header = HeaderMenu::all();
-                    break;
-                case 2:
-                    $header = HeaderMenu::whereIn('role', [0,2])->get();
-                    break;
-
-                case 3:
-                    $header = HeaderMenu::where('role', 3)->get();
-                    break;
-
-            }
-
-        else
-            $header = HeaderMenu::where('role', 0)->get();
-
-        return $header;
-
-    }
-
-
-    public static function getContact()
-    {
-
-        return ContactDetail::all();
-
-    }
-
 }

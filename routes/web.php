@@ -5,6 +5,7 @@ use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\OffersController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TableReservationController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,9 +30,10 @@ Route::get('register',[AuthController::class,"registerIndex"]);
 
 
 Route::resource('/',HomeController::class);
-Route::resource('/menu', MenuController::class);
-Route::resource('/offers', OffersController::class);
-Route::resource('/reservation', TableReservationController::class);
+Route::resource('menu', MenuController::class);
+Route::resource('offers', OffersController::class);
+Route::resource('reservation', TableReservationController::class);
+Route::resource('supplier', SupplierController::class);
 
 
 Route::get('/contact_us',[ContactUsController::class,'index']);

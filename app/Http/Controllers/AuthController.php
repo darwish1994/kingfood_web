@@ -13,7 +13,7 @@ class AuthController extends Controller
 
     public function loginIndex()
     {
-        if (Auth::user() !=null )
+        if (Auth::user() != null)
             return redirect('/');
 
         return view('auth.login');
@@ -23,7 +23,22 @@ class AuthController extends Controller
     {
 
 
-        if (Auth::attempt(['email' => $request->email, 'password' =>  $request->password])) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+
+            switch (Auth::user()->role_id) {
+
+                case 1:
+                    return redirect('/admin')->with('success', "Login successfully");
+                    break;
+
+                case 2:
+                    return redirect('/')->with('success', "Login successfully");
+                    break;
+                case 3:
+                    return redirect('/supplier')->with('success', "Login successfully");
+                    break;
+
+            }
 
             return redirect('/')->with('success', "Login successfully");
         } else {
@@ -72,7 +87,7 @@ class AuthController extends Controller
     public function registerIndex()
     {
 
-        if (Auth::user() !=null )
+        if (Auth::user() != null)
             return redirect('/');
 
         return view('auth.register');
@@ -80,9 +95,10 @@ class AuthController extends Controller
 
     }
 
-    public function logout(){
+    public function logout()
+    {
 
-        if (Auth::check()){
+        if (Auth::check()) {
             Auth::logout();
         }
 
