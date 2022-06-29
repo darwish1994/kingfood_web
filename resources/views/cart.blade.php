@@ -35,7 +35,7 @@
                             <th>{{$supply->name}}</th>
                             <th>{{$supply->quantity}}</th>
                             <th>{{$supply->price}}</th>
-                            <th><a href="{{url('cart/remove/').$supply->id}}">Remove</a></th>
+                            <th><a href="{{url('cart/remove/'.$supply->id)}}">Remove</a></th>
                         </tr>
                     @endforeach
 
