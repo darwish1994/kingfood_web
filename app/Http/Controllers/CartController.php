@@ -149,7 +149,7 @@ class CartController extends Controller
 
         if ($item == null) {
             $newItem = new CartItem();
-            $newItem->user_id = Auth::user()->id;
+            $newItem->user_id = $request->user_id;
             $newItem->product_id = $id;
             $newItem->quantity = $request->quantity;
             $newItem->price = Product::find($id)->price;
