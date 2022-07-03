@@ -177,7 +177,7 @@ class CartController extends Controller
             return response()->json($data, 401);
         }
 
-        $items["data"] = CartItem::where('user_id', $request->user_id)->join('product', 'cart_item.product_id', 'product.id')->select('cart_item.*', 'product.name')->get();
+        $items["data"] = CartItem::where('user_id', $request->user_id)->join('product', 'cart_item.product_id', 'product.id')->select('cart_item.*', 'product.name','product.image')->get();
 
         return response()->json($items, 200);
 
