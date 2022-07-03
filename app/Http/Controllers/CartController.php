@@ -155,15 +155,15 @@ class CartController extends Controller
             $newItem->price = Product::find($id)->price;
             $newItem->save();
 
-            $data["data"] = $newItem;
+
         } else {
             $item->quantity = $request->quantity;
             $item->update();
 
-            $data["data"] = $item;
+
         }
 
-        return response()->json($data, 200);
+        return response()->json("", 200);
 
     }
 
