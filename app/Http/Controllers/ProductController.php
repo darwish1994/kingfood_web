@@ -33,9 +33,11 @@ class ProductController extends Controller
 
         $cart = CartItem::where('product_id', $id)->where('user_id', $request->user_id)->first();
 
-        dd($cart);
 
-        $product->quantity = $cart->quantity ?: 0 ;
+        if ($cart == null)
+            $product->quantity = 0;
+        else
+            $product->quantity = $cart->quantity;
 
         $data["data"] = $product;
 
