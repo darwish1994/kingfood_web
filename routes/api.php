@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OffersController;
 use App\Http\Controllers\ProductController;
@@ -38,7 +39,7 @@ Route::get('home', [HomeController::class, 'getHome']);
 
 Route::get('product/{id}',[ProductController::class,"getProductById"]);
 
-
+Route::get('cart/add/{id}',[CartController::class,'addToCartApi']);
 
 
 

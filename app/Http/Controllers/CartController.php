@@ -127,4 +127,44 @@ class CartController extends Controller
         return redirect()->back();
 
     }
+
+
+    /***api*
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     */
+
+    public function addToCartApi(Request $request,$id)
+    {
+        if (empty($request->user_id)) {
+            $data["data"] = null;
+            $data["message"] = "please login";
+            return response()->json($data, 401);
+        }
+
+
+        $item = CartItem::where('user_id', $request->user_id)->where('product_id', $id)->first();
+
+        if ($item == null) {
+            $newItem = new CartItem();
+            $newItem->user_id = Auth::user()->id;
+            $newItem->product_id = $id;
+            $newItem->quantity = $request->quantity;
+            $newItem->price = Product::find($id)->price;
+            $newItem->save();
+
+        } else {
+            $item->quantity = $request->quantity;
+            $item->update();
+        }
+
+        return redirect()->back();
+
+    }
+
+
+
+
+
 }
