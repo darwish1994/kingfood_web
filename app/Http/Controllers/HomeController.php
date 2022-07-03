@@ -28,84 +28,19 @@ class HomeController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 
     public static function getHeaderMenu()
     {
 
 
         if (Auth::check())
-            switch (Auth::user()->role_id){
+            switch (Auth::user()->role_id) {
 
                 case 1:
                     $header = HeaderMenu::all();
                     break;
                 case 2:
-                    $header = HeaderMenu::whereIn('role', [0,2])->get();
+                    $header = HeaderMenu::whereIn('role', [0, 2])->get();
                     break;
 
                 case 3:
@@ -126,6 +61,20 @@ class HomeController extends Controller
     {
 
         return ContactDetail::all();
+
+    }
+
+
+    public function getHome()
+    {
+
+        $home["section"] = Section::all();
+        $home["offer"] = Offer::all();
+
+        $data["data"] = $home;
+
+        return response()->json($data, 200);
+
 
     }
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OffersController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
@@ -29,9 +30,11 @@ Route::post('register', [UserController::class, 'register']);
 Route::post('forget_password', [UserController::class, 'resetPassword']);
 
 
-Route::get('product',[ProductController::class,'getAllProducts']);
+Route::get('product', [ProductController::class, 'getAllProducts']);
 
-Route::get('offers',[OffersController::class,'getAllOffers']);
+Route::get('offers', [OffersController::class, 'getAllOffers']);
+
+Route::get('home', [HomeController::class, 'getHome']);
 
 
 
