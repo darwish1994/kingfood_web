@@ -40,6 +40,7 @@ Route::get('home', [HomeController::class, 'getHome']);
 Route::get('product/{id}',[ProductController::class,"getProductById"]);
 
 Route::get('cart/add/{id}',[CartController::class,'addToCartApi']);
+Route::get('cart',[CartController::class,'getCart']);
 
 
 

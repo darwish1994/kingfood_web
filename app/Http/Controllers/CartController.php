@@ -163,8 +163,24 @@ class CartController extends Controller
 
         }
 
-        $data["data"]="";
+        $data["data"] = "";
         return response()->json($data, 200);
+
+    }
+
+
+    public function getCart(Request $request)
+    {
+        if (empty($request->user_id)) {
+            $data["data"] = null;
+            $data["message"] = "please login";
+            return response()->json($data, 401);
+        }
+
+        $items["data"] = CartItem::where('user_id', $request->user_id)->join('product', 'cart_item.product_id', 'product.id')->select('cart_item.*', 'product.name')->get();
+
+        return response()->json($items, 200);
+
 
     }
 
