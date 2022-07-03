@@ -32,7 +32,7 @@ class ProductController extends Controller
         $product = Product::find($id);
         $cart = CartItem::where('product_id', $id)->where('user_id', $request->user_id)->first();
 
-        $product->quantity = $cart->quantity;
+        $product->quantity = $cart->quantity ?: 0 ;
 
         $data["data"] = $product;
 
