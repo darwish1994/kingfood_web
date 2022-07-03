@@ -135,7 +135,7 @@ class CartController extends Controller
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
 
-    public function addToCartApi(Request $request,$id)
+    public function addToCartApi(Request $request, $id)
     {
         if (empty($request->user_id)) {
             $data["data"] = null;
@@ -146,6 +146,7 @@ class CartController extends Controller
 
         $item = CartItem::where('user_id', $request->user_id)->where('product_id', $id)->first();
 
+
         if ($item == null) {
             $newItem = new CartItem();
             $newItem->user_id = Auth::user()->id;
@@ -154,17 +155,17 @@ class CartController extends Controller
             $newItem->price = Product::find($id)->price;
             $newItem->save();
 
+            $data["data"] = $newItem;
         } else {
             $item->quantity = $request->quantity;
             $item->update();
+
+            $data["data"] = $item;
         }
 
-        return redirect()->back();
+        return response()->json($data, 200);
 
     }
-
-
-
 
 
 }
