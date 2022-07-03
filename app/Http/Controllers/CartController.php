@@ -163,7 +163,8 @@ class CartController extends Controller
 
         }
 
-        return response()->json("", 200);
+        $data["data"]="";
+        return response()->json($data, 200);
 
     }
 
