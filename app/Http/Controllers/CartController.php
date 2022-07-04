@@ -185,4 +185,23 @@ class CartController extends Controller
     }
 
 
+    public function removeItem(Request $request, $id){
+
+        if (empty($request->user_id)) {
+            $data["data"] = null;
+            $data["message"] = "please login";
+            return response()->json($data, 401);
+        }
+
+        $cart=CartItem::find($id);
+        $cart->delete();
+
+
+        $items["data"] = CartItem::where('user_id', $request->user_id)->join('product', 'cart_item.product_id', 'product.id')->select('cart_item.*', 'product.name','product.image')->get();
+
+        return response()->json($items, 200);
+
+    }
+
+
 }
