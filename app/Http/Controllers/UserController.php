@@ -43,21 +43,21 @@ class UserController extends Controller
     public function register(Request $request)
     {
 
-        $validated = $request->validate([
-            "name" => "required",
-            "email" => "required|unique:users",
-            "phone" => "required|unique:users",
-            "address" => "required",
-            "password" => "required",
-
-        ]);
-
-        if (!empty($validated)) {
-
-            $data["error"] = $validated;
-            return response()->json($data, 401);
-        }
-
+//        $validated = $request->validate([
+//            "name" => "required",
+//            "email" => "required|unique:users",
+//            "phone" => "required|unique:users",
+//            "address" => "required",
+//            "password" => "required",
+//
+//        ]);
+//
+//        if (!empty($validated)) {
+//
+//            $data["error"] = $validated;
+//            return response()->json($data, 400);
+//        }
+//
 
         $user = new User();
 
