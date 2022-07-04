@@ -118,7 +118,7 @@ class OrderController extends Controller
 
         foreach ($orders as $order) {
             $items = OrderItem::where('order_id', $order->id)->join('product', 'order_item.product_id', 'product.id')
-                ->select('order_item.*', 'product.name', 'product.image')
+                ->select('order_item.*', 'product.name', 'product.image','product.price')
                 ->get();
 
             $order->items = $items;
