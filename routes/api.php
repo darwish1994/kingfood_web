@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OffersController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -45,5 +46,7 @@ Route::get('cart/remove/{id}',[CartController::class,'removeItem']);
 
 Route::get('cart',[CartController::class,'getCart']);
 
+Route::get('order',[OrderController::class,'getOrders']);
+Route::get('order/create',[OrderController::class,'createNewOrderApi']);
 
 
