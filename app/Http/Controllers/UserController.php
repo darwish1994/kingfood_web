@@ -52,9 +52,10 @@ class UserController extends Controller
 
         ]);
 
-        if (!empty($validated)) {
+        if ($validated->fails()) {
 
-            $data["error"] = $validated;
+            $data["message"] = $validated->errors();
+
             return response()->json($data, 400);
         }
 
