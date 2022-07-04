@@ -117,8 +117,8 @@ class OrderController extends Controller
         $data["data"] = Order::where('user_id', $request->user_id)
             ->join('order_item', 'order.id', 'order_item.order_id')
             ->join('product', 'order_item.product_id', 'product.id')
-            ->select('order_item.*', 'product.name', 'product.image')
-            ->groupBy('order_item.order_id')
+            ->select('order.*','order_item.*', 'product.name', 'product.image')
+            ->groupBy('order.id')
             ->get();
 
         return response()->json($data, 200);
