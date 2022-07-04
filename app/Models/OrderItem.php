@@ -16,4 +16,11 @@ class OrderItem extends Model
 
     protected $table = "order_item";
 
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+
+
 }

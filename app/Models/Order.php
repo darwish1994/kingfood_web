@@ -16,4 +16,9 @@ class Order extends Model
 
     protected $table = "order";
 
+    public function items()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
 }
