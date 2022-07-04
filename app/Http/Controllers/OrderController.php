@@ -97,11 +97,14 @@ class OrderController extends Controller
 
             }
 
-
+            $data["data"] = "";
+            $data["message"] = "Order Has been Created #" . $order->id;
+            return response()->json($data, 200);
         }
 
-        return redirect('/');
+        $data["message"] = "Cart is empty";
 
+        return response()->json($data, 400);
 
     }
 
@@ -118,7 +121,7 @@ class OrderController extends Controller
 
         foreach ($orders as $order) {
             $items = OrderItem::where('order_id', $order->id)->join('product', 'order_item.product_id', 'product.id')
-                ->select('order_item.*', 'product.name', 'product.image','product.price')
+                ->select('order_item.*', 'product.name', 'product.image', 'product.price')
                 ->get();
 
             $order->items = $items;
